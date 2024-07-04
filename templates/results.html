@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Injection Scan Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>SQL Injection Scan Results</h1>
+    <ul>
+        {% for result in results %}
+            {% if 'message' in result %}
+                <li>
+                    {{ result['message'] }}
+                    {% if result['vulnerable'] %}
+                        <strong style="color: red;">Vulnerable</strong>
+                    {% else %}
+                        <strong style="color: green;">Not Vulnerable</strong>
+                    {% endif %}
+                </li>
+            {% else %}
+                <li>{{ result }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</body>
+</html>

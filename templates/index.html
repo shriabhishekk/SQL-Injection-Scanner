@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Injection Scanner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            position: relative;
+            margin-top: 80px;
+            width: 80%;
+            margin: 150px auto 50px; /* Adjust the top margin to create space for the logo */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            position: absolute;
+            top: 5px; /* Adjust the top position of the logo */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 130px; /* Adjust the width of the logo */
+            z-index: 1; /* Ensure logo appears above content */
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/Vellore_Institute_of_Technology_seal_2017.svg/800px-Vellore_Institute_of_Technology_seal_2017.svg.png" alt="Logo">
+    <div class="container">
+        <h1>SQL Injection Scanner</h1>
+        <form id="urlForm">
+            <label for="url">Enter URL:</label>
+            <input type="text" id="url" name="url" placeholder="https://example.com">
+            <input type="submit" value="Scan">
+        </form>
+        <div class="output" id="output"></div>
+    </div>
+
+    <script>
+        document.getElementById("urlForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var url = document.getElementById("url").value;
+            var outputDiv = document.getElementById("output");
+            
+            // Clear previous output
+            outputDiv.innerHTML = "";
+            
+            // Perform AJAX request
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/sql_injection_scan", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    outputDiv.innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send("url=" + encodeURIComponent(url));
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Injection Scanner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SQL Injection Scanner</h1>
+        <form id="urlForm">
+            <label for="url">Enter URL:</label>
+            <input type="text" id="url" name="url" placeholder="https://example.com">
+            <input type="submit" value="Scan">
+        </form>
+        <div class="output" id="output"></div>
+    </div>
+
+    <script>
+        document.getElementById("urlForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var url = document.getElementById("url").value;
+            var outputDiv = document.getElementById("output");
+            
+            // Clear previous output
+            outputDiv.innerHTML = "";
+            
+            // Perform AJAX request
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/sql_injection_scan", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    outputDiv.innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send("url=" + encodeURIComponent(url));
+        });
+    </script>
+</body>
+</html>
+ -->
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Injection Scanner</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #0F0;
+        }
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: #000;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid #0F0;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #0F0;
+            border-radius: 4px;
+            background-color: #000;
+            color: #0F0;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #0F0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+            font-size: 18px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SQL Injection Scanner</h1>
+        <form id="urlForm">
+            <label for="url">Enter Target URL:</label>
+            <input type="text" id="url" name="url" placeholder="https://example.com">
+            <input type="submit" value="Initiate Scan">
+        </form>
+        <div class="output" id="output"></div>
+    </div>
+
+    <script>
+        document.getElementById("urlForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var url = document.getElementById("url").value;
+            var outputDiv = document.getElementById("output");
+            
+            // Clear previous output
+            outputDiv.innerHTML = "";
+            
+            // Perform AJAX request
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/sql_injection_scan", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    outputDiv.innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send("url=" + encodeURIComponent(url));
+        });
+    </script>
+</body>
+</html>
+
+''' -->
